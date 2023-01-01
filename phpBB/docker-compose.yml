@@ -8,7 +8,8 @@ services:
       MYSQL_PASSWORD: mysql
     restart: always
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init.sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init.sql/seed.sql:/docker-entrypoint-initdb.d/seed.sql
   legacy-php:
     depends_on:
       - mysql
@@ -17,3 +18,4 @@ services:
       - .:/var/www/html
     ports:
       - "8002:80"
+      - "33306:3306"
